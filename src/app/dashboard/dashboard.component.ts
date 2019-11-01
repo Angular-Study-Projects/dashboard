@@ -45,10 +45,15 @@ export class DashboardComponent implements OnInit {
    */
   showGraphics(): void {
     this.showPieChart();
+    this.show3dPieChart();
+    this.showBarChart();
+    this.showLineChart();
+    this.showColumnChart();
+    this.showDonutChart();
   }
 
   /**
-   * Show Pi Chart
+   * Show Pie Chart
    * 
    * @return void 
    */
@@ -59,6 +64,71 @@ export class DashboardComponent implements OnInit {
     chart.draw(this.getDataTable(), this.getOptions());
   }
 
+  /**
+   * Show 3d Pie Chart
+   * 
+   * @return void
+   */
+  show3dPieChart(): void {
+    const el = document.getElementById("3d_pie_chart");
+    const chart = new google.visualization.PieChart(el);
+    const options = this.getOptions();
+
+    options['is3D'] = true;
+
+    chart.draw(this.getDataTable(), this.getOptions(), options );
+  }
+
+  /**
+   * Show Donut Chart
+   * 
+   * @return void
+   */
+  showDonutChart(): void {
+    const el = document.getElementById("donut_chart");
+    const chart = new google.visualization.PieChart(el);
+    const options = this.getOptions();
+
+    options['pieHole'] = 0.4;
+
+    chart.draw(this.getDataTable(), this.getOptions(), options );
+  }
+
+  /**
+   * Show Bar Chart
+   * 
+   * @return void
+   */
+  showBarChart(): void {
+    const el = document.getElementById("bar_chart");
+    const chart = new google.visualization.BarChart(el);
+
+    chart.draw(this.getDataTable(), this.getOptions() );
+  }
+
+  /**
+   * Show Line Chart
+   * 
+   * @return void
+   */
+  showLineChart(): void {
+    const el = document.getElementById("line_chart");
+    const chart = new google.visualization.LineChart(el);
+
+    chart.draw(this.getDataTable(), this.getOptions() );
+  }
+
+  /**
+   * Show Column Chart
+   * 
+   * @return void
+   */
+  showColumnChart(): void {
+    const el = document.getElementById("column_chart");
+    const chart = new google.visualization.ColumnChart(el);
+
+    chart.draw(this.getDataTable(), this.getOptions() );
+  }
 
   /**
    * Create and return the DataTable Object of graphic API
